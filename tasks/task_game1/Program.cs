@@ -1,6 +1,7 @@
 ﻿using System;
 using static System.Console;
 using System.Threading;
+using static System.Random;
 
 
 namespace task_game1
@@ -11,9 +12,15 @@ namespace task_game1
         {
             Write("Enter username: ");
             string username = ReadLine();
+
+            Random rand = new Random();
             int counter = 0, max_counter = -1;
-            int x = 6, y = 2;
-            int user_x = 4, user_y = 5;
+            int x = rand.Next(1, 200), y = rand.Next(1, 50);
+            int user_x = rand.Next(1, 200), user_y = rand.Next(1, 50);y = rand.Next(1, 50);
+            do {
+                x = rand.Next(1, 200);
+                y = rand.Next(1, 50);
+            } while(x == user_x || y == user_y);
             int height = 50, width = 200;
             CursorVisible = true;
             int vector = 1;
@@ -29,74 +36,11 @@ namespace task_game1
                 ForegroundColor = ConsoleColor.Red;
                 DrawBall(x, y, "Enemy");
                 // changing vectors
-                if (x + 1 == width && (vector == 1 || vector == 2))
-                {
-                    if (vector == 1)
-                    {
-                        vector = 4;
-                    }
-                    else
-                    {
-                        vector = 3;
-                    }
-                }
-                else if (x - 1 == 0 && (vector == 3 || vector == 4))
-                {
-                    if (vector == 3)
-                    {
-                        vector = 2;
-                    }
-                    else
-                    {
-                        vector = 1;
-                    }
-                }
-                if (y + 1 == height && (vector == 1 || vector == 4))
-                {
-                    if (vector == 1)
-                    {
-                        vector = 2;
-                    }
-                    else
-                    {
-                        vector = 3;
-                    }
-                }
-                else if (y - 1 == 0 && (vector == 2 || vector == 3))
-                {
-                    if(vector == 2)
-                    {
-                        vector = 1;
-                    }
-                    else
-                    {
-                        vector = 4;
-                    }
-                }
+                vector = ChangeVector(vector, x, y, width, height);
 
                 // running
-                if (vector == 1)
-                {
-                    x += 1;
-                    y += 1;
-                }
-                else if (vector == 2)
-                {
-                    x += 1;
-                    y -= 1; 
-                }
-                else if (vector == 3)
-                {
-                    x -= 1;
-                    y -= 1;
-                }
-                else
-                {
-                    x -= 1;
-                    y += 1;
-                }
-
-
+                x = xChange(vector, x);
+                y = yChange(vector, y);
                 //user ball
                 ForegroundColor = ConsoleColor.Blue;
                 DrawBall(user_x, user_y, username);
@@ -197,6 +141,79 @@ namespace task_game1
             Write("Player: " + username);
             SetCursorPosition(width/2 + 4, height + 2);
             Write("Record: " + max_counter);
+        }
+
+        static int ChangeVector(int vector, int x, int y, int width, int height)
+        {
+            if (x + 1 == width && (vector == 1 || vector == 2))
+            {
+                if (vector == 1)
+                {
+                    return 4;
+                }
+                else
+                {
+                    return 3;
+                }
+            }
+            else if (x - 1 == 0 && (vector == 3 || vector == 4))
+            {
+                if (vector == 3)
+                {
+                    return 2;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+            if (y + 1 == height && (vector == 1 || vector == 4))
+            {
+                if (vector == 1)
+                {
+                    return 2;
+                }
+                else
+                {
+                    return 3;
+                }
+            }
+            else if (y - 1 == 0 && (vector == 2 || vector == 3))
+            {
+                if(vector == 2)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 4;
+                }
+            }
+            return vector;
+        }
+
+        static int xChange(int vector, int x)
+        {
+            if (vector == 1 || vector == 2)
+            {
+                return x + 1;
+            }
+            else
+            {
+                return x - 1;
+            }
+        }
+
+        static int yChange(int vector, int y)
+        {
+            if (vector == 1 || vector == 4)
+            {
+                return y + 1;
+            }
+            else
+            {
+                return y - 1;
+            }
         }
     }
 }

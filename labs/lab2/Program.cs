@@ -9,7 +9,7 @@ namespace lab2
         static void Main(string[] args)
         {
             WriteLine("---------------------------------");
-            WriteLine("Values of y for x from -10 to 10:");
+            WriteLine("Values of y for x in range [-10; 10]:");
             for(double x = -10; x <= 10; x += 0.5)
             {
                 WriteLine();
@@ -21,14 +21,14 @@ namespace lab2
             double xMin = double.Parse(ReadLine());
             Write("Enter xMax: ");
             double xMax = double.Parse(ReadLine());
-            Write("Enter xStep: ");
-            double xStep = double.Parse(ReadLine());
+            Write("Enter nStep: ");
+            int nStep = int.Parse(ReadLine());
 
-            int ErrorCode = CanInt(xMin, xMax, xStep);
+            int ErrorCode = CanInt(xMin, xMax, nStep);
             if (ErrorCode == 0)
             {
                 WriteLine("Integral for f(x) in range [{0}; {1}] is: ", xMin, xMax);
-                WriteLine(IntX(xMin, xMax, xStep));
+                WriteLine(IntX(xMin, xMax, nStep));
             }
             else if (ErrorCode == -1)
             {
@@ -40,7 +40,7 @@ namespace lab2
             }
             else
             {
-                WriteLine("Cannot calculate integral, xStep is not positive");
+                WriteLine("Cannot calculate integral, nStep is not positive");
             }
         }
         static double Fx(double x)
@@ -66,8 +66,9 @@ namespace lab2
         {
             return 1.3 * (x + 1) - 2/x;
         }
-        static double IntX(double xMin, double xMax, double xStep)
+        static double IntX(double xMin, double xMax, double nStep)
         {
+            double xStep = (xMax- xMin)/(double)nStep;
             double sum = 0;
             for(double x = xMin; x < xMax; x += xStep)
             {
@@ -75,7 +76,7 @@ namespace lab2
             }
             return sum;
         }
-        static int CanInt(double xMin, double xMax, double xStep)
+        static int CanInt(double xMin, double xMax, double nStep)
         {
             if (xMin > xMax)
             {
@@ -85,7 +86,7 @@ namespace lab2
             {
                 return -2;
             }
-            else if (xStep <= 0)
+            else if (nStep <= 0)
             {
                 return -3;
             }
