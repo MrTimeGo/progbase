@@ -13,18 +13,19 @@ namespace lab3
             string choise = ReadLine();
             if (choise == "1")
             {
-                int[] massive1 = new int[11];
-                for (int i = 0; i < 11; i++)
+                int lenth = int.Parse(ReadLine());
+                int[] massive1 = new int[lenth];
+                for (int i = 0; i < lenth; i++)
                 {
                     Write("{0} element: ", i+1);
                     massive1[i] = int.Parse(ReadLine());
                 }
                 Clear();
                 WriteLine("Entered levels:");
-                for (int i = 0; i < 11; i++)
+                for (int i = 0; i < lenth; i++)
                 {
                     Write(massive1[i]);
-                    if (i == 10)
+                    if (i == lenth-1)
                     {
                         WriteLine(".");
                     }
@@ -36,7 +37,7 @@ namespace lab3
                 int max = int.MinValue;
                 int min = int.MaxValue;
 
-                for (int i = 0; i < 11; i++)
+                for (int i = 0; i < lenth; i++)
                 {
                     if (max < massive1[i])
                     {
@@ -51,15 +52,15 @@ namespace lab3
                 int difference = -min;
                 max = difference + max;
                 min = difference + min;
-                int[] massive2 = new int[11];
+                int[] massive2 = new int[lenth];
 
                 //a
                 WriteLine("Moved levels: ");
-                for (int i = 0; i < 11; i++)
+                for (int i = 0; i < lenth; i++)
                 {
                     massive2[i] = massive1[i] + difference;
                     Write(massive2[i]);
-                    if (i == 10)
+                    if (i == lenth-1)
                     {
                         WriteLine(".");
                     }
@@ -70,14 +71,14 @@ namespace lab3
                 }
 
                 //b
-                double[] massive3 = new double[11];
+                double[] massive3 = new double[lenth];
 
                 WriteLine("Normalized levels:");
-                for (int i = 0; i < 11; i++)
+                for (int i = 0; i < lenth; i++)
                 {
                     massive3[i] = massive2[i]/((double)max);
                     Write(massive3[i]);
-                    if (i == 10)
+                    if (i == lenth-1)
                     {
                         WriteLine(".");
                     }
@@ -104,10 +105,10 @@ namespace lab3
                     }
                 }
                 
-                int[] massive4 = new int[11];
+                int[] massive4 = new int[lenth];
                 //int max_above_water = int.MinValue;
                 WriteLine("Water levels:");
-                for (int i = 0; i < 11; i++)
+                for (int i = 0; i < lenth; i++)
                 {
                     if (massive2[i] >= water_level)
                     {
@@ -118,7 +119,7 @@ namespace lab3
                         massive4[i] = water_level - massive2[i];
                     }
                     Write(massive4[i]);
-                    if (i == 10)
+                    if (i == lenth-1)
                     {
                         WriteLine(".");
                     }
@@ -143,8 +144,9 @@ namespace lab3
         }
         static int[,] Make_2D_massive(int max, int water_level, int[] massive2, int[] massive4)
         {
-            int[,] graphics = new int[max, 11];
-            for (int j = 0; j < 11; j++)
+            int lenth = massive2.Length;
+            int[,] graphics = new int[max, lenth];
+            for (int j = 0; j < lenth; j++)
             {
                 for (int i = 0; i < massive2[j]; i++)
                 {
@@ -162,15 +164,16 @@ namespace lab3
         }
         static void DrawDiagram(int max, int[,] graphics, int water_level)
         {
+            int lenth = graphics.Length;
             int top = CursorTop;
             WriteLine("-------------");
             for (int i = 1; i <= max; i++)
             {
                 SetCursorPosition(0, top+i);
                 Write("|");
-                SetCursorPosition(12, top+i);
+                SetCursorPosition(lenth+1, top+i);
                 Write("|");
-                SetCursorPosition(13, top+i);
+                SetCursorPosition(lenth+2, top+i);
                 Write(max+1-i);
                 if (max+1-i == water_level)
                 {
@@ -181,7 +184,7 @@ namespace lab3
             WriteLine("-------------");
             WriteLine();
 
-            for (int j = 0; j < 11; j++)
+            for (int j = 0; j < lenth; j++)
             {
                 for(int i = 0; i < max; i++)
                 {
