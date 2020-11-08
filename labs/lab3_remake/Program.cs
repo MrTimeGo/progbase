@@ -83,28 +83,53 @@ namespace lab3_remake
             }
             else if (choise == "2")
             {
-                /*
-                int[,] input = new int[10, 9]
+                Write("If you want to generate matrix from example, type '1', if you want to generate random matrix type '2': ");
+                string choise2 = ReadLine();
+                int[,] input;
+                if (choise2 == "1")
                 {
-                    {0, 1, 0, 1, 1, 0, 0, 0, 1},
-                    {1, 1, 0, 0, 1, 1, 0, 1, 1},
-                    {0, 1, 0, 1, 1, 1, 0, 1, 0},
-                    {1, 0, 1, 1, 0, 0, 1, 0, 1},
-                    {0, 0, 0, 1, 1, 1, 0, 1, 1},
-                    {0, 0, 1, 0, 1, 0, 1, 1, 0},
-                    {0, 1, 0, 0, 0, 0, 1, 1, 0},
-                    {1, 0, 1, 1, 0, 0, 0, 0, 1},
-                    {1, 0, 1, 1, 1, 1, 1, 0, 1},
-                    {1, 1, 1, 1, 1, 1, 1, 1, 1}
-                };
-                */
-                int[,] input = Random2dArray();
+                    input = new int[10, 9]
+                    {
+                        {0, 1, 0, 1, 1, 0, 0, 0, 1},
+                        {1, 1, 0, 0, 1, 1, 0, 1, 1},
+                        {0, 1, 0, 1, 1, 1, 0, 1, 0},
+                        {1, 0, 1, 1, 0, 0, 1, 0, 1},
+                        {0, 0, 0, 1, 1, 1, 0, 1, 1},
+                        {0, 0, 1, 0, 1, 0, 1, 1, 0},
+                        {0, 1, 0, 0, 0, 0, 1, 1, 0},
+                        {1, 0, 1, 1, 0, 0, 0, 0, 1},
+                        {1, 0, 1, 1, 1, 1, 1, 0, 1},
+                        {1, 1, 1, 1, 1, 1, 1, 1, 1}
+                    };
+                }
+                else
+                {
+                    input = Random2dArray();
+                }
+                Clear();
+                int[,] copy_input = new int[input.GetLength(0), input.GetLength(1)];
+                Array.Copy(input, copy_input, input.Length);
+
+                WriteLine("Input matrix: ");
+                WriteLine();
                 Write2dArray(input);
                 WriteLine();
+
                 input = InvertArray(input);
-
+                input = MakeNumMatrix(input);
+                int max = FindMax(input);
                 
+                int[] counters = FillCounters(input);
+                int changes = 0;
+                do {
+                    input = MakeChanges(input, out changes);
+                    counters = FillCounters(input);
+                } while (changes != 0);
 
+                WriteLine();
+                DrawDiagram(copy_input);
+                WriteLine();
+                WriteLine("The biggest volume of water reservoir: " + FindMax(counters));
             }
             else
             {
@@ -187,6 +212,45 @@ namespace lab3_remake
                 }
             }
             return min;
+        }
+        static int FindMinNonZero(int[] array)
+        {
+            int min = int.MaxValue;
+            bool check = false;
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (min > array[i] && array[i] != 0)
+                {
+                    min = array[i];
+                    check = true;
+                }
+            }
+            if (check)
+            {
+                return min;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        static int FindMax(int[,] array)
+        {
+            int height = array.GetLength(0);
+            int lenth = array.GetLength(1);
+
+            int max = int.MinValue;
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < lenth; j++)
+                {
+                    if (array[i,j] > max)
+                    {
+                        max = array[i,j];
+                    }
+                }
+            }
+            return max;
         }
         static int[] MakeMovedArray(int[] array)
         {
@@ -318,6 +382,43 @@ namespace lab3_remake
             WriteLine();
             WriteLine();
         }
+        static void DrawDiagram(int[,] graphics)
+        {
+            int height = graphics.GetLength(0);
+            int width = graphics.GetLength(1);
+            int top = CursorTop;
+            //rectangle
+            for (int i = 1; i <= width; i++)
+            {
+                SetCursorPosition(i, top);
+                Write("-");
+                SetCursorPosition(i, top + height + 1);
+                Write("-");
+                Thread.Sleep(100);
+            }
+            for (int j = 0; j <= height + 1; j++)
+            {
+                SetCursorPosition(0, top + j);
+                Write("|");
+                SetCursorPosition(width + 1, top + j);
+                Write("|");
+                Thread.Sleep(100);
+            }
+            for (int j = 0; j < width; j++)
+            {
+                for (int i = 0; i < height; i++)
+                {
+                    SetCursorPosition(j + 1, top + i + 1);
+                    if (graphics[i,j] == 1)
+                    {
+                        Write("N");
+                    }
+                    Thread.Sleep(200);
+                }
+            }
+            WriteLine();
+            WriteLine();
+        }
         static int[,] Random2dArray()
         {
             Random rand = new Random();
@@ -348,6 +449,200 @@ namespace lab3_remake
                     else
                     {
                         array[i,j] = 0;
+                    }
+                }
+            }
+            return array;
+        }
+        static int[,] MakeNumMatrix(int[,] array)
+        {
+            int height = array.GetLength(0);
+            int lenth = array.GetLength(1);
+
+            int counter = 1;
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < lenth; j++)
+                {
+                    if (array[i,j] ==  1)
+                    {
+                        array[i,j] = counter;
+                        counter++;
+                    }
+                }
+            }
+            return array;
+        }
+        static int[] FillCounters(int[,] array)
+        {
+            int height = array.GetLength(0);
+            int lenth = array.GetLength(1);
+
+            int[] counters = new int[FindMax(array) + 1];
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < lenth; j++)
+                {
+                    if (array[i,j] != 0)
+                    {
+                        counters[array[i,j]] += 1;
+                    }
+                }
+            }
+            return counters;
+        }
+        static int[,] MakeChanges(int[,] array, out int changes)
+        {
+            int height = array.GetLength(0);
+            int lenth = array.GetLength(1);
+            changes = 0;
+
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < lenth; j++)
+                {
+                    if (array[i,j] != 0)
+                    {
+                        //upper border
+                        if (i - 1 == -1)
+                        {
+                            //left upper corner
+                            if (j - 1 == -1)
+                            {
+                                int down = array[i + 1, j];
+                                int right = array[i, j + 1];
+                                
+                                int[] dimentions = new int[] {down, right};
+                                int min = FindMinNonZero(dimentions);
+                                if (min != 0 && min < array[i,j])
+                                {
+                                    array[i,j] = min;
+                                    changes++;
+                                }
+                            }
+                            //right upper corner
+                            else if (j + 1 == lenth)
+                            {
+                                int down = array[i + 1, j];
+                                int left = array[i, j - 1];
+
+                                int[] dimentions = new int[] {down, left};
+                                int min = FindMinNonZero(dimentions);
+                                if (min != 0 && min < array[i,j])
+                                {
+                                    array[i,j] = min;
+                                    changes++;
+                                }
+                            }
+                            //non-corner upper border
+                            else
+                            {
+                                int down = array[i + 1, j];
+                                int right = array[i, j + 1];
+                                int left = array[i, j - 1];
+
+                                int[] dimentions = new int[] {down, left, right};
+                                int min = FindMinNonZero(dimentions);
+                                if (min != 0 && min < array[i,j])
+                                {
+                                    array[i,j] = min;
+                                    changes++;
+                                }
+                            }
+                        }
+                        //lower border
+                        else if (i + 1 == height)
+                        {
+                            //left lower corner
+                            if (j - 1 == -1)
+                            {
+                                int up = array[i - 1, j];
+                                int right = array[i, j + 1];
+
+                                int[] dimentions = new int[] {up, right};
+                                int min = FindMinNonZero(dimentions);
+                                if (min != 0 && min < array[i,j])
+                                {
+                                    array[i,j] = min;
+                                    changes++;
+                                }
+                            }
+                            //right lower corner
+                            else if (j + 1 == lenth)
+                            {
+                                int up = array[i - 1, j];
+                                int left = array[i, j - 1];
+
+                                int[] dimentions = new int[] {up, left};
+                                int min = FindMinNonZero(dimentions);
+                                if (min != 0 && min < array[i,j])
+                                {
+                                    array[i,j] = min;
+                                    changes++;
+                                }
+                            }
+                            //non-corner lower border
+                            else
+                            {
+                                int up = array[i - 1, j];
+                                int left = array[i, j - 1];
+                                int right = array[i, j + 1];
+
+                                int[] dimentions = new int[] {up, left, right};
+                                int min = FindMinNonZero(dimentions);
+                                if (min != 0 && min < array[i,j])
+                                {
+                                    array[i,j] = min;
+                                    changes++;
+                                }
+                            }
+                        }
+                        //non-corner left border
+                        else if (j - 1 == -1)
+                        {
+                            int up = array[i - 1, j];
+                            int right = array[i, j + 1];
+                            int down = array[i + 1, j];
+
+                            int[] dimentions = new int[] {up, down, right};
+                            int min = FindMinNonZero(dimentions);
+                            if (min != 0 && min < array[i,j])
+                            {
+                                array[i,j] = min;
+                                changes++;
+                            }
+                        }
+                        //non-corner right border
+                        else if (j + 1 == lenth)
+                        {
+                            int up = array[i - 1, j];
+                            int left = array[i, j - 1];
+                            int down = array[i + 1, j];
+
+                            int[] dimentions = new int[] {up, down, left};
+                            int min = FindMinNonZero(dimentions);
+                            if (min != 0 && min < array[i,j])
+                            {
+                                array[i,j] = min;
+                                changes++;
+                            }
+                        }
+                        //not at border
+                        else
+                        {
+                            int up = array[i - 1, j];
+                            int left = array[i, j - 1];
+                            int down = array[i + 1, j];
+                            int right = array[i, j + 1];
+
+                            int[] dimentions = new int[] {up, down, left, right};
+                            int min = FindMinNonZero(dimentions);
+                            if (min != 0 && min < array[i,j])
+                            {
+                                array[i,j] = min;
+                                changes++;
+                            }
+                        }
                     }
                 }
             }
