@@ -1,6 +1,5 @@
 ﻿using System;
 using static System.Console;
-using static System.Math;
 using System.Threading;
 
 namespace lab3_remake
@@ -102,18 +101,23 @@ namespace lab3_remake
                         {1, 1, 1, 1, 1, 1, 1, 1, 1}
                     };
                 }
-                else
+                else if (choise2 == "2")
                 {
                     input = Random2dArray();
                 }
+                else
+                {
+                    WriteLine("You entered incorrect number, rerun your app");
+                    return;
+                }
                 Clear();
-                int[,] copy_input = new int[input.GetLength(0), input.GetLength(1)];
-                Array.Copy(input, copy_input, input.Length);
 
                 WriteLine("Input matrix: ");
                 WriteLine();
                 Write2dArray(input);
                 WriteLine();
+                WriteLine();
+                DrawDiagram(input);
 
                 input = InvertArray(input);
                 input = MakeNumMatrix(input);
@@ -126,8 +130,7 @@ namespace lab3_remake
                     counters = FillCounters(input);
                 } while (changes != 0);
 
-                WriteLine();
-                DrawDiagram(copy_input);
+
                 WriteLine();
                 WriteLine("The biggest volume of water reservoir: " + FindMax(counters));
             }
