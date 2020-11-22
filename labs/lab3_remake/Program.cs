@@ -38,10 +38,6 @@ namespace lab3_remake
                 int[] moved_array = MakeMovedArray(input_array);
                 WriteLine("Moved array:");
                 WriteArray(moved_array);
-
-                double[] norm_array = MakeNormArray(moved_array);
-                WriteLine("Normilized array:");
-                WriteDoubleArray(norm_array);
                 
                 WriteLine();
                 WriteLine("------------------------------");
@@ -121,7 +117,6 @@ namespace lab3_remake
 
                 input = InvertArray(input);
                 input = MakeNumMatrix(input);
-                int max = FindMax(input);
                 
                 int[] counters = FillCounters(input);
                 int changes = 0;
@@ -265,16 +260,6 @@ namespace lab3_remake
             }
             return moved_array;
         }
-        static double[] MakeNormArray(int[] array)
-        {
-            int moved_max = FindMax(array);
-            double[] norm_array = new double[array.Length];
-            for (int i = 0; i < array.Length; i++)
-            {
-                norm_array[i] = array[i] / (double)moved_max;
-            }
-            return norm_array;
-        }
         static int[] MakeWaterArray(int[] array, int water_level)
         {
             int[] water_array = new int[array.Length];
@@ -379,7 +364,7 @@ namespace lab3_remake
                     {
                         Write("~");
                     }
-                    Thread.Sleep(200);
+                    Thread.Sleep(100);
                 }
             }
             WriteLine();
@@ -416,7 +401,11 @@ namespace lab3_remake
                     {
                         Write("N");
                     }
-                    Thread.Sleep(200);
+                    else
+                    {
+                        Write("~");
+                    }
+                    Thread.Sleep(100);
                 }
             }
             WriteLine();
