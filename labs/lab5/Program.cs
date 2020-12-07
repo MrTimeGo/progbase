@@ -184,7 +184,7 @@ namespace lab5
                 if (subcommand[1] == "get")
                 {
                     int index;
-                    if (int.TryParse(subcommand[2], out index) && index <= task3Capitals.Length)
+                    if (int.TryParse(subcommand[2], out index) && index > 0)
                         ProcessCsvGet(index);
                     else
                         WriteLine("Entered command '{0}' is invalid. Invalid index", command);
@@ -196,7 +196,7 @@ namespace lab5
                 if (subcommand[1] == "set")
                 {
                     int index;
-                    if (int.TryParse(subcommand[2], out index) && index <= task3Capitals.Length)
+                    if (int.TryParse(subcommand[2], out index) && index > 0)
                         ProcessCsvSet(index, subcommand[3], subcommand[4]);
                     else
                         WriteLine("Entered command '{0}' is invalid. Invalid index", command);
@@ -296,31 +296,36 @@ namespace lab5
         }
         static void ProcessCsvGet(int index)
         {
-            if (task3Capitals.Length >= index)
-            {
-                Capital capital = task3Capitals[index - 1];
-                WriteLine("Data for capital:");
-                WriteLine("{0}. {1} is the capital of {2}. The population is {3} million people. Square is {4} km^2.", capital.id, capital.name, capital.country, capital.population, capital.square);
-            }
+            foreach (Capital capital in task3Capitals)
+                if (capital.id == index)
+                {
+                    WriteLine("Data for capital:");
+                    WriteLine("{0}. {1} is the capital of {2}. The population is {3} million people. Square is {4} km^2.", capital.id, capital.name, capital.country, capital.population, capital.square);
+                    break;
+                }
         }
         static void ProcessCsvSet(int index, string field, string value)
         {
-            if (task3Capitals.Length >= index)
+            for (int i = 0; i < task3Capitals.Length; i++)
             {
-                Capital capital = task3Capitals[index - 1];
-                if (field == "id")
-                    capital.id = int.Parse(value);
-                else if (field == "name")
-                    capital.name = value;
-                else if (field == "country")
-                    capital.country = value;
-                else if (field == "population")
-                    capital.population = double.Parse(value);
-                else if (field == "square")
-                    capital.square = int.Parse(value);
-                task3Capitals[index - 1] = capital;
-                task3Table = CapitalsToTable(task3Capitals);
-                task3CsvText = TableToCsv(task3Table);
+                Capital capital = task3Capitals[i];
+                if (capital.id == index)
+                {
+                    if (field == "id")
+                        capital.id = int.Parse(value);
+                    else if (field == "name")
+                        capital.name = value;
+                    else if (field == "country")
+                        capital.country = value;
+                    else if (field == "population")
+                        capital.population = double.Parse(value);
+                    else if (field == "square")
+                        capital.square = int.Parse(value);
+                    task3Capitals[i] = capital;
+                    task3Table = CapitalsToTable(task3Capitals);
+                    task3CsvText = TableToCsv(task3Table);
+                    break;
+                }
             }
         }
         static void ProcessCsvSave()
