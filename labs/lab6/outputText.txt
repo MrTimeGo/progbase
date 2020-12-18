@@ -1,0 +1,4 @@
+Is number the only one: False
+Number of numbers: 3
+List of numbers:
+4324 -> 4324 -> 432423
