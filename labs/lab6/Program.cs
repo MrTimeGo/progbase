@@ -124,7 +124,6 @@ namespace lab6
         Stop,
         ReadyRead,
         NumberIntPart,
-        NumberNotIntPart,
         EndOfNumber,
     }
     struct Options
@@ -406,7 +405,7 @@ namespace lab6
         }
         static void ReadEndOfNumber(string input, ref int scanIndex, ref int counter, ref bool spaceBetween, ref bool dotAfter)
         {
-            if(scanIndex == input.Length)
+            if (scanIndex == input.Length)
             {
                 state = State.Stop;
                 counter++;
@@ -550,7 +549,7 @@ namespace lab6
 
         static Options ParseOptions(string[] args)
         {
-            Options options = new Options { };
+            Options options = new Options {isInteractiveMode = false, inputFile = "", outputFile = ""};
 
             bool[] isParsedArr = new bool[args.Length];
 
