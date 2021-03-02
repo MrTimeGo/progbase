@@ -400,7 +400,7 @@ namespace lab2
                     }
                     ListCapital capitals = rep.GetExport(date);
                     WriteAllCapitals(capitals);
-                    WriteLine($"{capitals.Count} was written to \"export.csv\"");
+                    WriteLine($"{capitals.Count} capitals was written to \"export.csv\"");
                 }
                 else if (input == "exit")
                 {
