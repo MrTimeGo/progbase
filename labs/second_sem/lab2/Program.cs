@@ -9,6 +9,7 @@ namespace lab2
 {
     class Capital
     {
+        public int id;
         public string name;
         public string country;
         public int population;
@@ -18,8 +19,9 @@ namespace lab2
         {
 
         }
-        public Capital(string name, string country, int population, double area)
+        public Capital(int id, string name, string country, int population, double area)
         {
+            this.id = id;
             this.name = name;
             this.country = country;
             this.population = population;
@@ -27,7 +29,7 @@ namespace lab2
         }
         public override string ToString()
         {
-            return string.Format("Name: {0} - Country: {1} - Population: {2} - Area: {3} - Created at: {4}",name, country, population, area, createdAt.ToString("o"));
+            return string.Format("{0}. Name: {1} - Country: {2} - Population: {3} - Area: {4} - Created at: {5}",id, name, country, population, area, createdAt.ToString("o"));
         }
     }
     class ListCapital
@@ -165,6 +167,7 @@ namespace lab2
             Capital capital = new Capital();
             if (reader.Read())
             {
+                capital.id = reader.GetInt32(0);
                 capital.name = reader.GetString(1);
                 capital.country = reader.GetString(2);
                 capital.population = reader.GetInt32(3);
@@ -230,6 +233,7 @@ namespace lab2
             {
                 Capital capital = new Capital
                 {
+                    id = reader.GetInt32(0),
                     name = reader.GetString(1),
                     country = reader.GetString(2),
                     population = reader.GetInt32(3),
@@ -256,6 +260,7 @@ namespace lab2
             {
                 Capital capital = new Capital
                 {
+                    id = reader.GetInt32(0),
                     name = reader.GetString(1),
                     country = reader.GetString(2),
                     population = reader.GetInt32(3),
