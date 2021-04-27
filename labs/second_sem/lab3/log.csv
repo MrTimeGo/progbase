@@ -1,16 +1,6 @@
-2021-03-28T21:54:06.0564587+03:00,LOG,Set a values: 
-2021-03-28T21:54:08.2780054+03:00,LOG,Set b values: 
-2021-03-28T21:54:18.8323455+03:00,LOG,Value was added to set a
-2021-03-28T21:54:22.8743303+03:00,LOG,Value was added to set b
-2021-03-28T21:54:32.5195430+03:00,LOG,Value was added to set a
-2021-03-28T21:54:50.7161158+03:00,LOG,Set a was updated
-2021-03-28T21:55:01.2964779+03:00,LOG,Set a values: 4.
-2021-03-28T21:55:21.6269128+03:00,LOG,Sets are not equal
-2021-03-28T21:55:30.8942635+03:00,LOG,Value was added to set a
-2021-03-28T21:55:33.7580625+03:00,LOG,Value was added to set b
-2021-03-28T21:55:41.6555029+03:00,LOG,Sets are equal
-2021-03-28T21:55:52.7172193+03:00,LOG,Value was removed from set a
-2021-03-28T21:55:56.5706892+03:00,LOG,Set a values: 3.
-2021-03-28T21:56:00.7836656+03:00,LOG,Set b was cleared
-2021-03-28T21:56:04.3278717+03:00,LOG,Set b values: 
-2021-03-28T21:56:16.8639821+03:00,ERROR,Value doesn't contain in set a
+2021-04-08T13:50:28.5377242+03:00,ERROR,Value doesn't contain in set a
+2021-04-08T13:56:58.0459302+03:00,ERROR,Error: Unknown command
+2021-04-08T13:57:21.9185363+03:00,LOG,Value was added to set a
+2021-04-08T13:58:23.8754873+03:00,LOG,Set a values: 
+2021-04-08T13:58:32.2367468+03:00,LOG,Set b values: 
+2021-04-08T13:58:43.9021201+03:00,LOG,Value was added to set a

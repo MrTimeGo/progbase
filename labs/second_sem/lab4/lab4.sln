@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab4", "lab4.csproj", "{34B61155-CC5B-4AF3-9508-8A2F4E9D6C9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{B0E7ACFC-B077-4863-BB40-BAECB90F0DB9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgbaseLab.ImageEditor.Pixel", "ProgbaseLab.ImageEditor.Pixel\ProgbaseLab.ImageEditor.Pixel.csproj", "{1F256C64-A9A0-4AC2-8400-D88D983E933E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgbaseLab.ImageEditor.Fast", "ProgbaseLab.ImageEditor.Fast\ProgbaseLab.ImageEditor.Fast.csproj", "{DC01A586-48EE-4298-B9A9-18D5D283C710}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgbaseLab.ImageEditor.Common", "ProgbaseLab.ImageEditor.Common\ProgbaseLab.ImageEditor.Common.csproj", "{A0995775-FBF3-4686-A3C1-65E2CCD9D3C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +17,27 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{34B61155-CC5B-4AF3-9508-8A2F4E9D6C9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{34B61155-CC5B-4AF3-9508-8A2F4E9D6C9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{34B61155-CC5B-4AF3-9508-8A2F4E9D6C9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{34B61155-CC5B-4AF3-9508-8A2F4E9D6C9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0E7ACFC-B077-4863-BB40-BAECB90F0DB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0E7ACFC-B077-4863-BB40-BAECB90F0DB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0E7ACFC-B077-4863-BB40-BAECB90F0DB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0E7ACFC-B077-4863-BB40-BAECB90F0DB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F256C64-A9A0-4AC2-8400-D88D983E933E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F256C64-A9A0-4AC2-8400-D88D983E933E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F256C64-A9A0-4AC2-8400-D88D983E933E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F256C64-A9A0-4AC2-8400-D88D983E933E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC01A586-48EE-4298-B9A9-18D5D283C710}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC01A586-48EE-4298-B9A9-18D5D283C710}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC01A586-48EE-4298-B9A9-18D5D283C710}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC01A586-48EE-4298-B9A9-18D5D283C710}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0995775-FBF3-4686-A3C1-65E2CCD9D3C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0995775-FBF3-4686-A3C1-65E2CCD9D3C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0995775-FBF3-4686-A3C1-65E2CCD9D3C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0995775-FBF3-4686-A3C1-65E2CCD9D3C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {51A984EA-2490-4CD7-94E7-92270A70F31F}
+		SolutionGuid = {0A52E087-68A6-41DD-8A73-DCBB3C70AC92}
 	EndGlobalSection
 EndGlobal

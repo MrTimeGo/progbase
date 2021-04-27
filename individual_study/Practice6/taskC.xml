@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<library xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="goodbooks">
+	<book price="0">
+		<title>Harry Potter and the Methods of Rationality</title>
+		<authors>Eliezer Yudkowsky</authors>
+	</book>
+	<book price="324.5">
+		<title>The Martian</title>
+		<authors>Andy Weir</authors>
+	</book>
+	<book price="153">
+		<title>The Three-Body Problem</title>
+		<authors>Liu Cixin</authors>
+	</book>
+	<book price="572">
+		<title>Watchmen</title>
+		<authors>Alan Moore</authors>
+	</book>
+</library>

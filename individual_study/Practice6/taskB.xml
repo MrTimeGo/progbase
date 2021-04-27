@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" skipIntro="true">
+	<filePath>./some/file/path.xml</filePath>
+	<adjustments brightness="0.7" contrast="1.0" />
+</configuration>
+

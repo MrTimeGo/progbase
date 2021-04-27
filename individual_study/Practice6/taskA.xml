@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<filePath>./some/file/path.xml</filePath>
+	<skipIntro>true</skipIntro>
+	<adjustments>
+		<brightness>0.7</brightness>
+		<contrast>1.0</contrast>
+	</adjustments>
+</Configuration>
