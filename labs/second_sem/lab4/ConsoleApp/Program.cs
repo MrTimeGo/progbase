@@ -25,8 +25,11 @@ namespace ConsoleApp
     {
         public static void Run(string[] args)
         {
+            Stopwatch sp = new Stopwatch();
+            sp.Start();
             ProgramArguments programArguments = ParseArguments(args);
 
+            
             switch (programArguments.operation)
             {
                 case "crop":
@@ -55,6 +58,8 @@ namespace ConsoleApp
                     break;
                 }
             }
+            sp.Stop();
+            Console.WriteLine($"Arguments was parsed and function {programArguments.operation} was done in {sp.ElapsedMilliseconds} ms.");
         }
         private static void ProcessCrop(ProgramArguments args)
         {
