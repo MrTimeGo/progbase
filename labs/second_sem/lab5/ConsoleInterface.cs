@@ -223,7 +223,7 @@ namespace lab5
 
             List<Course> courses = XmlDataIO.GetCoursesFromFile(args.otherArguments[0]);
             dataProcessor.Courses = courses;
-            WriteLine($"{courses.Count} courses was loaded from {args.operation[0]}");
+            WriteLine($"{courses.Count} courses was loaded from {args.otherArguments[0]}");
         }
         private static string GetHelp()
         {
