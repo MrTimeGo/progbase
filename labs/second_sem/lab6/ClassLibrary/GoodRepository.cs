@@ -54,7 +54,7 @@ namespace ClassLibrary
             command.Parameters.AddWithValue("$description", good.description);
             command.Parameters.AddWithValue("$price", good.price);
             command.Parameters.AddWithValue("$is_available", good.isAvailable);
-            command.Parameters.AddWithValue("$created_at", good.createdAt);
+            command.Parameters.AddWithValue("$created_at", good.createdAt.ToString("o"));
 
             command.ExecuteNonQuery();
             connection.Close();
